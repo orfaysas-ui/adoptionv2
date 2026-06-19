@@ -103,7 +103,10 @@ def adoption_analytics (eq,tickets,hotels,min,max):
     tickets['week_nb_since_launch']= tickets['day_nb_since_launch']//7
 
     tickets_since_launch = tickets[
-        (tickets.date.dt.date<=max)]
+        (tickets.date.dt.date<=max)
+        &
+        (tickets.date.dt.date>= pd.to_datetime(tickets.launch_date).dt.date)
+        ]
     tickets_selected_window = tickets[
         (tickets.date.dt.date<=max)
         &(tickets.date.dt.date>=min)
